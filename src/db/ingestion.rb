@@ -1,6 +1,6 @@
 require 'oj'
 
-# A SCP JSON parser that writes finished top-level objects to a db as it goes
+# A callback JSON parser that writes finished top-level objects to a db as it goes
 class IngestHandler < ::Oj::ScHandler
   def initialize(db)
     @db = db
@@ -31,7 +31,7 @@ end
 
 # A pipeline that dumps large JSON files into our db without loading the whole
 # contents into memory at one time.
-class IngestionPipeline
+class Db::Ingestion
   def initialize(db)
     @db = db
   end

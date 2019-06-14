@@ -1,9 +1,9 @@
-require_relative './db'
-require_relative './ingest'
+require_relative './db/base'
 
-conn = Db.new
-ingestion = IngestionPipeline.new(conn)
-ingestion.ingest('users.json')
-puts conn.read('_id', 75)
-puts conn.read('alias', 'Miss Rosanna')
-conn.close
+
+organizations = Db::Base.new
+users = Db::Base.new
+users.set_foreign_keys({'organization_id' => organizations})
+users.ingest('./data/users.json')
+organizations.ingest('./data/organizations.json')
+puts users.search('_id', 75)
