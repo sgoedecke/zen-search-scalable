@@ -1,5 +1,5 @@
 module Ui
-  class Base
+  class Search
     def initialize(models)
       @models = models
     end
@@ -28,7 +28,7 @@ module Ui
     end
 
     def display_result(res)
-      if res.empty?
+      if res.nil?
         puts "No results found"
       else
         puts res # TODO: pretty-print

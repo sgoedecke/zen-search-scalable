@@ -24,10 +24,6 @@ module Db
       @index = {}
     end
 
-    def close
-      @heap.close
-    end
-
     def write(record)
       # since reading can move the file cursor around, we seek to the end 
       # of file here to ensure we only ever append
