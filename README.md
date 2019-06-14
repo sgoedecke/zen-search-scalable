@@ -5,8 +5,12 @@ An attempt at a "properly-scalable" Ruby implementation of the Zendesk search ch
 ## Usage
 
 `gem install oj`
-`ruby ./main.rb`
+`ruby ./src/main.rb`
 
+## But does it work?
+
+To ensure it is actually scalable, run it in a tight space:
+`ulimit -v ???`
 
 ## Strategy
 

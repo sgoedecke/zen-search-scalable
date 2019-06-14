@@ -63,8 +63,15 @@ module Db
         # to avoid unencoding each line, do a string match first to rule out obvious misses
         next unless line.include?(value) && line.include?(key)
         record = JSON.parse(line)
-        return record if record[key] == value
+        return record if matches?(record[key], value)
       end
+      return nil
+    end
+
+    def matches?(key, value)
+      return true if key == value
+      return true if key.is_a?(Array) && key.include?(value)
+      false
     end
   end
 end
