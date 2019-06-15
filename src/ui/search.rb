@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Ui
   class Search
     def initialize(models)
@@ -31,7 +33,7 @@ module Ui
       if res.nil?
         puts "No results found"
       else
-        puts res # TODO: pretty-print
+        puts YAML.dump(res)
       end
     end
   end

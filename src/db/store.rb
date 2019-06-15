@@ -30,7 +30,7 @@ module Db
       @heap.seek(0, IO::SEEK_END)
       cursor = @heap.pos
       index_val = record[@index_key]
-      @index[index_val] = cursor unless index_val.nil?
+      @index[index_val.to_s] = cursor unless index_val.nil?
       @heap << "#{record.to_json}\n"
     end
 
@@ -45,7 +45,7 @@ module Db
     private
 
     def read_from_index(key, value)
-      pos = @index[value]
+      pos = @index[value.to_s]
       return nil unless pos
 
       # seek to the byte offset stored in the index and return the whole line
@@ -64,9 +64,9 @@ module Db
       return nil
     end
 
-    def matches?(key, value)
-      return true if key == value
-      return true if key.is_a?(Array) && key.include?(value)
+    def matches?(a, b)
+      return true if a.to_s == b.to_s
+      return true if a.is_a?(Array) && b.include?(value)
       false
     end
   end
